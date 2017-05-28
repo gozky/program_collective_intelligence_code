@@ -40,6 +40,37 @@ def sim_distance(prefs, person1, person2):
 
 
 def sim_pearson(prefs, person1, person2):
+	commonList = []
+	for item in prefs[person1]:
+		if item in prefs[person2]:
+			commonList.append(item)
+
+	if len(commonList) == 0:
+		return 0
+
+	sum1 = sum([prefs[person1][item] for item in commonList])
+	sum2 = sum([prefs[person2][item] for item in commonList])
+
+	# sum of products
+	pSum = sum([prefs[person1][item] * prefs[person2][item] for item in commonList])
+
+	## 分子，协方差
+	corr = pSum - (sum1 * sum2)/n 
+
+	sum1Sq = sum([pow(prefs[person1][item], 2) for item in commonList])
+	sum2Sq = sum([pow(prefs[person2][item], 2) for item in commonList])
+
+	std1 = sum1Sq - pow(sum1, 2)/n
+	std2 = sum1Sq - pow(sum2, 2)/n
+
+	std = sqrt(std1 * std2)
+
+	if std == 0:
+		return 0
+
+	return corr/(std)
+
+
 	
 
 
