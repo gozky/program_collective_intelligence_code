@@ -63,6 +63,7 @@ def sim_pearson(prefs, person1, person2):
 	std1 = sum1Sq - pow(sum1, 2)/n
 	std2 = sum1Sq - pow(sum2, 2)/n
 
+	## 标准差乘积
 	std = sqrt(std1 * std2)
 
 	if std == 0:
